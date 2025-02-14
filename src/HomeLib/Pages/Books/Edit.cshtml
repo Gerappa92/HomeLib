@@ -1,0 +1,21 @@
+@page "{id:int}"
+@model Edit
+@{
+    ViewData["Title"] = $"Edit - {Model.Book.Title}";
+}
+
+<h2>Edit @Model.Book.Title</h2>
+<form method="post">
+    <input asp-for="Book.Id" style="display: none;" />
+    <div class="mb-3">
+        <label asp-for="Book.Title" class="form-label"></label>
+        <input asp-for="Book.Title" class="form-control" />
+        <span asp-validation-for="Book.Title" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Book.Author" class="form-label"></label>
+        <input asp-for="Book.Author" class="form-control" />
+        <span asp-validation-for="Book.Author" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
