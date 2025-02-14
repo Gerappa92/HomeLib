@@ -1,4 +1,5 @@
 ﻿@page
+@using HomeLib.Pages.Books
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -7,4 +8,5 @@
 <div class="text-center">
     <h1 class="display-4">Welcome in Home Lib</h1>
     <p>Yours private library</p>
+    <a class="btn btn-primary" asp-page="@Url.Page("Books/NewBook")" role="button">Add new book</a>
 </div>
