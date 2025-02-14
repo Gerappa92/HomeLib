@@ -1,0 +1,37 @@
+@page
+@model Index
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h1>Books</h1>
+<div >
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Read</th>
+    </tr>
+  </thead>
+  <tbody>
+@foreach (var book in Model.Books){
+    <tr>
+      <th scope="row">@book.Id</th>
+      <td>@book.Title</td>
+      <td>@book.Author</td>
+      <td>@if(@book.IsRead)
+        {
+            <i class="bi bi-check-circle" style="color: CadetBlue;"></i>
+        }
+        else
+        {
+            <i class="bi bi-x-circle" style="color: SlateBlue;"></i>
+        }
+      </td>
+    </tr>
+}
+  </tbody>
+</table>
+</div>
