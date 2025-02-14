@@ -1,7 +1,20 @@
+using Microsoft.AspNetCore.HttpLogging;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHttpLogging(logging =>
+{
+    logging.LoggingFields =
+        HttpLoggingFields.RequestProperties
+        | HttpLoggingFields.RequestHeaders
+        | HttpLoggingFields.ResponseHeaders
+        | HttpLoggingFields.RequestBody
+        | HttpLoggingFields.ResponseBody;
+    logging.RequestHeaders.Add("Authorization");
+    logging.ResponseHeaders.Add("Authorization");
+});
 
 var app = builder.Build();
 
@@ -20,7 +33,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
+app.UseStatusCodePagesWithReExecute("/Troubles", "?statusCode={0}");
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();

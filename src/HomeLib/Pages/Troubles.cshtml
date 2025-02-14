@@ -1,0 +1,8 @@
+@page
+@model TroublesModel
+@{
+    ViewData["Title"] = "Troubles";
+}
+
+<h1>Something went wrong - @Model.OriginalStatusCode</h1>
+<p>Double check what your try to find <code>@Model.OriginalPathAndQuery</code></p>
