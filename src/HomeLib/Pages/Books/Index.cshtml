@@ -13,6 +13,7 @@
       <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">Read</th>
+      <th scope="col">Rating</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,21 @@
         else
         {
             <i class="bi bi-x-circle" style="color: SlateBlue;"></i>
+        }
+      </td>
+      
+      <td>
+        @if(@book.IsRead)
+        @for(int i = 0; i < 5; i++)
+        {
+            @if(i < book.Rating)
+            {
+                <i class="bi bi-star-fill" style="color: Gold;"></i>
+            }
+            else
+            {
+                <i class="bi bi-star" style="color: Gold;"></i>
+            }
         }
       </td>
     </tr>

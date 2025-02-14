@@ -12,6 +12,7 @@ public class Index(ILogger<Index> logger) : PageModel
                 Title = "The Great Gatsby",
                 Author = "F. Scott Fitzgerald",
                 IsRead = true,
+                Rating = 5,
             },
             new ReadBook
             {
@@ -19,6 +20,7 @@ public class Index(ILogger<Index> logger) : PageModel
                 Title = "Mobile First",
                 Author = "Luke Wroblewski",
                 IsRead = true,
+                Rating = 4,
             },
             new ReadBook
             {
@@ -26,6 +28,7 @@ public class Index(ILogger<Index> logger) : PageModel
                 Title = "The Art of War",
                 Author = "Sun Tzu",
                 IsRead = false,
+                Rating = 3,
             },
         ];
     private readonly ILogger<Index> _logger = logger;
@@ -41,5 +44,6 @@ public class Index(ILogger<Index> logger) : PageModel
         public required string Title { get; set; }
         public required string Author { get; set; }
         public required bool IsRead { get; set; }
+        public required int Rating { get; set; }
     }
 }
