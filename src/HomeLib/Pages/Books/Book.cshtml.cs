@@ -1,49 +1,22 @@
+using System.Threading.Tasks;
+using HomeLib.BusinessLogic;
+using HomeLib.BusinessLogic.Queries.Books;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Riok.Mapperly.Abstractions;
 
 namespace HomeLib.Pages.Books;
 
-public class Book : PageModel
+public class Book(ILogger<Book> logger, IBookService bookService) : PageModel
 {
-    public IReadOnlyCollection<ReadBook> Books { get; } =
-        [
-            new ReadBook
-            {
-                Id = 1,
-                Title = "The Great Gatsby",
-                Author = "F. Scott Fitzgerald",
-                IsRead = true,
-                Rating = 5,
-                Notes = "A great American novel.",
-            },
-            new ReadBook
-            {
-                Id = 2,
-                Title = "Mobile First",
-                Author = "Luke Wroblewski",
-                IsRead = true,
-                Rating = 4,
-                Notes = "A must-read for web designers.",
-            },
-            new ReadBook
-            {
-                Id = 3,
-                Title = "The Art of War",
-                Author = "Sun Tzu",
-                IsRead = false,
-                Rating = 3,
-                Notes = "A classic book on military strategy.",
-            },
-        ];
-
     public required ReadBook CurrentBook { get; set; }
 
-    public IActionResult OnGet(int id)
+    public async Task<IActionResult> OnGet(int id)
     {
-        var book = Books.FirstOrDefault(b => b.Id == id);
+        var book = await bookService.GetBook(id);
         if (book is not null)
         {
-            CurrentBook = book;
+            CurrentBook = book.MapToReadBook();
         }
         else
         {
@@ -59,6 +32,12 @@ public class Book : PageModel
         public required string Author { get; set; }
         public required bool IsRead { get; set; }
         public required int Rating { get; set; }
-        public required string Notes { get; set; }
+        public string? Notes { get; set; }
     }
+}
+
+[Mapper]
+public static partial class ReadBookMapping
+{
+    public static partial Book.ReadBook MapToReadBook(this BookDetails book);
 }

@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using HomeLib.BusinessLogic;
+using HomeLib.BusinessLogic.Commands.Books;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Riok.Mapperly.Abstractions;
 
 namespace HomeLib.Pages.Books;
 
-public class NewBook(ILogger<NewBook> logger) : PageModel
+public class NewBook(ILogger<NewBook> logger, IBookService bookService) : PageModel
 {
     private readonly ILogger<NewBook> _logger = logger;
 
@@ -17,7 +19,7 @@ public class NewBook(ILogger<NewBook> logger) : PageModel
         // Code to handle GET requests
     }
 
-    public IActionResult OnPost()
+    public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
         {
@@ -25,8 +27,8 @@ public class NewBook(ILogger<NewBook> logger) : PageModel
             return Page();
         }
 
-        _logger.LogInformation("New book: {@Book}", Book);
-        // Code to handle POST requests, e.g., save the new book details
+        var newBook = Book.MapToAddBookCommand();
+        await bookService.AddBook(newBook);
 
         return RedirectToPage(
             nameof(NewBookConfirmation),
@@ -44,4 +46,10 @@ public class NewBook(ILogger<NewBook> logger) : PageModel
         [MinLength(3)]
         public required string Author { get; set; }
     }
+}
+
+[Mapper]
+public static partial class InputBookMapping
+{
+    public static partial AddBookCommand MapToAddBookCommand(this NewBook.InputBook book);
 }

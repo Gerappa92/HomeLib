@@ -1,6 +1,15 @@
+using HomeLib.BusinessLogic;
+using HomeLib.DataAcces;
 using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<WebAppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("WebAppDbContext"))
+);
+
+builder.Services.AddScoped<IBookService, BookService>();
 
 // Add services to the container.
 var mvcBuilder = builder.Services.AddRazorPages();

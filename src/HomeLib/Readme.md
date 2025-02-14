@@ -11,10 +11,18 @@ This is a framework for creating a custom personal home library page. It is a si
 - Free to use
 - Open source
 
+## Prerequists
+
+- dotnet
+- dotnet ef
+- todo
+
 ## Getting Started
 
 To get started with the HomeLib framework, follow these steps:
 TODO: Add getting started instructions
+
+- run `dotnet ef database update`
 
 ## Documentation
 

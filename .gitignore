@@ -30,3 +30,6 @@ publish/
 
 # Ignore secrets
 secrets.json
+
+# Ignore SQlite database
+*.db

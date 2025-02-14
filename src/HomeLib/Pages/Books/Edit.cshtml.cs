@@ -1,34 +1,40 @@
+using HomeLib.BusinessLogic;
+using HomeLib.BusinessLogic.Queries.Books;
+using HomeLib.BusinessLogic.Commands.Books;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Riok.Mapperly.Abstractions;
+using System.Threading.Tasks;
 
 namespace HomeLib.Pages.Books;
 
-public class Edit(ILogger<Edit> logger) : PageModel
+public class Edit(ILogger<Edit> logger, IBookService bookService) : PageModel
 {
     private readonly ILogger<Edit> _logger = logger;
 
     [BindProperty]
     public required EditBook Book { get; set; }
 
-    public void OnGet(int id)
+    public async Task<IActionResult> OnGetAsync(int id)
     {
-        _logger.LogInformation("Edit book with id {id}", id);
-        Book = new EditBook
+        var book = await bookService.GetBook(id);
+        if (book is null)
         {
-            Id = id,
-            Title = "The Hobbit",
-            Author = "J.R.R. Tolkien",
-        };
+            return NotFound();
+        }
+        Book = book.MapToEditBook();
+        return Page();
     }
 
-    public IActionResult OnPost()
+    public async Task<IActionResult> OnPost()
     {
         if (!ModelState.IsValid)
         {
             return Page();
         }
 
-        _logger.LogInformation("Edit book with id {id}", Book.Id);
+        var book = Book.MapToEditBookCommand();
+        await bookService.UpdateBook(book);
         return RedirectToPage(nameof(Book), new { id = Book.Id });
     }
 
@@ -38,4 +44,12 @@ public class Edit(ILogger<Edit> logger) : PageModel
         public required string Title { get; set; }
         public required string Author { get; set; }
     }
+}
+
+[Mapper]
+public static partial class EditBookMapping
+{
+    public static partial Edit.EditBook MapToEditBook(this BookDetails book);
+
+    public static partial UpdateBookCommand MapToEditBookCommand(this Edit.EditBook book);
 }
