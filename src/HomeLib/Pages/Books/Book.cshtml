@@ -1,0 +1,30 @@
+@page "{id}"
+@model Book
+@{
+    ViewData["Title"] = $"Book - {@Model.CurrentBook.Title}";
+}
+
+<h1>@Model.CurrentBook.Title
+    @if (@Model.CurrentBook.IsRead)
+    {
+        <i class="bi bi-check-circle" style="color: CadetBlue;"></i>
+        @for (int i = 0; i < 5; i++)
+        {
+            @if (i < @Model.CurrentBook.Rating)
+            {
+                <i class="bi bi-star-fill" style="color: Gold;"></i>
+            }
+            else
+            {
+                <i class="bi bi-star" style="color: Gold;"></i>
+            }
+        }
+    }
+    else
+    {
+        <i class="bi bi-x-circle" style="color: SlateBlue;"></i>
+    }
+
+</h1>
+<h2>@Model.CurrentBook.Author</h2>
+<p>@Model.CurrentBook.Notes</p>
