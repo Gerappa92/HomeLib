@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HomeLib.Pages;
 
-public class TroublesModel : PageModel
+public class Troubles : PageModel
 {
     public int OriginalStatusCode { get; set; }
 

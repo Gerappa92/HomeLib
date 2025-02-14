@@ -1,20 +1,16 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HomeLib.Pages;
+namespace HomeLib.Pages.Books;
 
-public class NewBookModel : PageModel
+public class NewBook(ILogger<NewBook> logger) : PageModel
 {
-    private readonly ILogger<NewBookModel> _logger;
-
-    public NewBookModel(ILogger<NewBookModel> logger)
-    {
-        _logger = logger;
-    }
+    private readonly ILogger<NewBook> _logger = logger;
 
     [BindProperty]
-    public InputBook Book { get; set; }
+    public required InputBook Book { get; set; }
 
     public void OnGet()
     {
@@ -32,7 +28,10 @@ public class NewBookModel : PageModel
         _logger.LogInformation("New book: {@Book}", Book);
         // Code to handle POST requests, e.g., save the new book details
 
-        return RedirectToPage("/Index");
+        return RedirectToPage(
+            nameof(NewBookConfirmation),
+            new { title = Book.Title, author = Book.Author }
+        );
     }
 
     public class InputBook
@@ -40,6 +39,7 @@ public class NewBookModel : PageModel
         [Required]
         [MinLength(3)]
         public required string Title { get; set; }
+
         [Required]
         [MinLength(3)]
         public required string Author { get; set; }
