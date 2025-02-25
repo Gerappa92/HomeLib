@@ -26,16 +26,16 @@ public class Edit(ILogger<Edit> logger, IBookService bookService) : PageModel
         return Page();
     }
 
-    public async Task<IActionResult> OnPost()
+    public async Task<IActionResult> OnPost(int id)
     {
         if (!ModelState.IsValid)
         {
             return Page();
         }
 
-        var book = Book.MapToEditBookCommand();
+        var book = Book.MapToEditBookCommand(id);
         await bookService.UpdateBook(book);
-        return RedirectToPage(nameof(Book), new { id = Book.Id });
+        return RedirectToPage(nameof(Book), new { id });
     }
 
     public class EditBook
@@ -52,4 +52,11 @@ public static partial class EditBookMapping
     public static partial Edit.EditBook MapToEditBook(this BookDetails book);
 
     public static partial UpdateBookCommand MapToEditBookCommand(this Edit.EditBook book);
+
+    public static UpdateBookCommand MapToEditBookCommand(this Edit.EditBook book, int id)
+    {
+        var bookMapped = book.MapToEditBookCommand();
+        bookMapped.Id = id;
+        return bookMapped;
+    }
 }

@@ -5,8 +5,7 @@
 }
 
 <h2>Edit @Model.Book.Title</h2>
-<form method="post">
-    <input asp-for="Book.Id" style="display: none;" />
+<form method="post" asp-route-id="@Model.Book.Id">
     <div class="mb-3">
         <label asp-for="Book.Title" class="form-label"></label>
         <input asp-for="Book.Title" class="form-control" />
