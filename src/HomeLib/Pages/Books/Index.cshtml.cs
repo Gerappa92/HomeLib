@@ -1,5 +1,5 @@
-using HomeLib.BusinessLogic;
-using HomeLib.BusinessLogic.Queries.Books;
+using HomeLib.DataAccess.Book;
+using HomeLib.DataAccess.Book.Queries;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Riok.Mapperly.Abstractions;
 

@@ -1,6 +1,6 @@
-namespace HomeLib.BusinessLogic.Queries.Books
+namespace HomeLib.DataAccess.Book.Queries
 {
-    public abstract class Book
+    public abstract class BookQuery
     {
         public required int Id { get; set; }
         public required string Title { get; set; }

@@ -1,7 +1,7 @@
-using HomeLib.DataAcces.Entities;
+using HomeLib.DataAccess.Book;
 using Microsoft.EntityFrameworkCore;
 
-namespace HomeLib.DataAcces;
+namespace HomeLib.DataAccess;
 
 public class WebAppDbContext : DbContext
 {

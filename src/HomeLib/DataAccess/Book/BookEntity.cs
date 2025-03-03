@@ -1,4 +1,4 @@
-namespace HomeLib.DataAcces.Entities;
+namespace HomeLib.DataAccess.Book;
 
 public class BookEntity
 {
@@ -8,4 +8,7 @@ public class BookEntity
     public bool IsRead { get; set; }
     public int Rating { get; set; }
     public string? Notes { get; set; }
+    public bool IsCurrentlyReading { get; set; }
+    public DateTime DateAdded { get; set; }
+    public DateTime? DateRead { get; set; }
 }

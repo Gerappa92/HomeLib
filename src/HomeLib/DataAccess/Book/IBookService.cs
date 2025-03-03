@@ -1,7 +1,7 @@
-using HomeLib.BusinessLogic.Commands.Books;
-using HomeLib.BusinessLogic.Queries.Books;
+using HomeLib.DataAccess.Book.Commands;
+using HomeLib.DataAccess.Book.Queries;
 
-namespace HomeLib.BusinessLogic;
+namespace HomeLib.DataAccess.Book;
 
 public interface IBookService
 {

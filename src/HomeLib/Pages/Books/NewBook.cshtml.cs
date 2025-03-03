@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using HomeLib.BusinessLogic;
-using HomeLib.BusinessLogic.Commands.Books;
+using HomeLib.DataAccess.Book;
+using HomeLib.DataAccess.Book.Commands;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Riok.Mapperly.Abstractions;

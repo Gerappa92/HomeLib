@@ -1,11 +1,8 @@
-using System.Threading.Tasks;
-using HomeLib.BusinessLogic.Commands.Books;
-using HomeLib.BusinessLogic.Mappings;
-using HomeLib.BusinessLogic.Queries.Books;
-using HomeLib.DataAcces;
+using HomeLib.DataAccess.Book.Commands;
+using HomeLib.DataAccess.Book.Queries;
 using Microsoft.EntityFrameworkCore;
 
-namespace HomeLib.BusinessLogic;
+namespace HomeLib.DataAccess.Book;
 
 public class BookService : IBookService
 {

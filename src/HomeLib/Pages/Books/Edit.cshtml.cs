@@ -1,10 +1,9 @@
-using HomeLib.BusinessLogic;
-using HomeLib.BusinessLogic.Queries.Books;
-using HomeLib.BusinessLogic.Commands.Books;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Riok.Mapperly.Abstractions;
-using System.Threading.Tasks;
+using HomeLib.DataAccess.Book;
+using HomeLib.DataAccess.Book.Commands;
+using HomeLib.DataAccess.Book.Queries;
 
 namespace HomeLib.Pages.Books;
 

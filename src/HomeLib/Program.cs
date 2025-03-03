@@ -1,5 +1,5 @@
-using HomeLib.BusinessLogic;
-using HomeLib.DataAcces;
+using HomeLib.DataAccess;
+using HomeLib.DataAccess.Book;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.EntityFrameworkCore;
 
