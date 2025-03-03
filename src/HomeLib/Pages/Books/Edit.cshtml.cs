@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Riok.Mapperly.Abstractions;
 using HomeLib.DataAccess.Book;
 using HomeLib.DataAccess.Book.Commands;
 using HomeLib.DataAccess.Book.Queries;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Riok.Mapperly.Abstractions;
 
 namespace HomeLib.Pages.Books;
 
